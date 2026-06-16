@@ -1,0 +1,59 @@
+/* ============================================================
+   THEME — Marie Laurent · Coaching
+   Fichier : assets/css/base/theme.css
+
+   Thème clair et élégant : sauge, crème, or.
+   Cible : France, Belgique, Suisse, Canada, USA, UK
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+
+  /* === TYPOGRAPHIE === */
+  --font-base:    'Outfit', system-ui, sans-serif;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+
+  /* === COULEURS FOND (thème clair) === */
+  --color-bg-base:  #faf8f4;
+  --color-bg-alt:   #f5f0e8;
+  --color-bg-card:  #ffffff;
+  --color-bg-dark:  #141414;
+  --color-bg-input: #ffffff;
+  --color-bg-nav:   rgba(250, 248, 244, 0.96);
+
+  /* === COULEUR PRINCIPALE — Sauge === */
+  --color-primary-500: #7a9e7e;
+  --color-primary-600: #5a7e5e;
+  --color-primary-50:  rgba(122, 158, 126, 0.1);
+
+  /* === COULEUR ACCENT — Or === */
+  --color-accent:      #c9a84c;
+
+  /* === COULEURS TEXTE === */
+  --color-gray-900: #1c1c1c;
+  --color-gray-700: #4a4a4a;
+  --color-gray-400: #8a8a8a;
+  --color-gray-200: #e8e2d8;
+  --color-gray-100: #f5f0e8;
+  --color-gray-50:  #faf8f4;
+
+  /* === NEUTRES === */
+  --color-white:        #ffffff;
+  --color-black:        #000000;
+  --color-border:       #e8e2d8;
+  --color-text-inverse: #ffffff;
+
+  /* === OMBRES === */
+  --shadow-sm: 0 2px 8px  rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.1);
+
+  /* === ÉTATS === */
+  --color-success:        #22c55e;
+  --color-success-bg:     rgba(34, 197, 94, 0.08);
+  --color-success-border: rgba(34, 197, 94, 0.2);
+  --color-error:          #ef4444;
+  --color-error-bg:       rgba(239, 68, 68, 0.08);
+  --color-error-border:   rgba(239, 68, 68, 0.2);
+}

@@ -1,0 +1,150 @@
+/* ============================================================
+   SECTION — Espacements et en-têtes de sections
+   Fichier : assets/css/layout/section.css
+
+   Rôle unique : gérer le padding vertical des sections
+   et les styles d'en-têtes réutilisables.
+
+   Ce fichier ne connaît pas les couleurs des composants,
+   les tailles de cartes, ou les grilles.
+   Il pose uniquement le rythme vertical de la page.
+   ============================================================ */
+
+
+/* ----------------------------------------------------------
+   SECTION BASE
+---------------------------------------------------------- */
+.section {
+  padding-block: var(--space-16);  /* 64px haut et bas */
+}
+
+/*
+  padding-block → équivalent de padding-top + padding-bottom.
+  Syntaxe moderne et lisible.
+
+  --space-16 (64px) → respiration standard entre sections.
+  Assez pour que l'œil perçoive chaque section comme distincte,
+  pas trop pour ne pas créer des pages trop longues.
+*/
+
+.section--sm {
+  padding-block: var(--space-10);  /* 40px — sections compactes */
+}
+
+.section--lg {
+  padding-block: var(--space-20);  /* 80px — sections héroïques */
+}
+
+.section--gray {
+  background-color: var(--color-gray-50);
+  /*
+    Fond légèrement gris → alternance visuelle entre sections.
+    Évite la monotonie d'un fond 100% blanc sur toute la page.
+    Utilisé sur 1 section sur 2 en général.
+  */
+}
+
+.section--dark {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-inverse);
+}
+
+
+/* ----------------------------------------------------------
+   EN-TÊTE DE SECTION — Titre + sous-titre
+---------------------------------------------------------- */
+.section__header {
+  text-align: center;
+  margin-bottom: var(--space-10);  /* 40px avant le contenu */
+}
+
+.section__header--left {
+  text-align: left;
+}
+
+.section__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin-bottom: var(--space-2);
+}
+
+@media (min-width: 48rem) {
+  .section__title {
+    font-size: 2rem;
+  }
+}
+
+.section__subtitle {
+  font-size: 1rem;
+  color: var(--color-gray-700);
+  max-width: 36rem;      /* 576px — ligne pas trop longue */
+  margin-inline: auto;   /* centré quand header est centré */
+  line-height: 1.6;
+}
+
+.section__header--left .section__subtitle {
+  margin-inline: 0;
+  /*
+    Quand l'en-tête est aligné à gauche, le sous-titre
+    ne doit plus être centré — on annule margin-inline: auto.
+  */
+}
+
+
+/* ----------------------------------------------------------
+   TITRE AVEC LIGNES DÉCORATIVES
+
+   Usage : <h2 class="section__title section__title--lined">
+
+   Technique : flexbox sur le titre, les lignes sont
+   des pseudo-éléments qui s'étirent pour remplir l'espace.
+   flex: 1 → elles occupent tout l'espace disponible de chaque côté.
+   Si le titre est court → longues lignes.
+   Si le titre est long → courtes lignes. Toujours équilibré.
+---------------------------------------------------------- */
+.section__title--lined {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.section__title--lined::before,
+.section__title--lined::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background-color: var(--color-border);
+}
+
+/*
+  Pourquoi pseudo-éléments et pas 2 <span> dans le HTML ?
+  → Les lignes sont purement décoratives.
+  Le CSS est le bon endroit pour les décorations visuelles,
+  pas le HTML. Le HTML reste propre et sémantique.
+*/
+
+
+/* ----------------------------------------------------------
+   TITRE AVEC BORDURE BASSE
+
+   Usage : <h2 class="section__title section__title--underlined">
+---------------------------------------------------------- */
+.section__title--underlined {
+  padding-bottom: var(--space-4);
+  border-bottom: 2px solid var(--color-border);
+  margin-bottom: var(--space-8);
+}
+
+
+/* ----------------------------------------------------------
+   SEPARATEUR HORIZONTAL — usage libre
+
+   Usage : <hr class="divider">
+   ou appliquer sur n'importe quel élément.
+---------------------------------------------------------- */
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin-block: var(--space-8);
+}

@@ -1,0 +1,47 @@
+/* ============================================================
+   CONTAINER — Centrage et largeur maximale
+   Fichier : assets/css/layout/container.css
+
+   .container : centré, largeur max 75rem (1200px),
+   padding horizontal pour ne pas coller aux bords.
+
+   S'utilise sur l'enfant direct d'une section,
+   PAS sur la section elle-même.
+
+   Exemple :
+   <section class="section section--gray">
+     <div class="container">          ← ici
+       ...
+     </div>
+   </section>
+
+   Pourquoi pas directement sur <section> ?
+   → La section doit pouvoir avoir un background-color
+   pleine largeur. Le container centre le contenu à l'intérieur.
+   Si on met les deux sur le même élément, le fond est tronqué.
+   ============================================================ */
+
+.container {
+  width: 100%;
+  max-width: 75rem;     /* 1200px */
+  margin-inline: auto;  /* centrage horizontal */
+  padding-inline: var(--space-6); /* 24px de chaque côté */
+}
+
+/*
+  margin-inline: auto → équivalent de margin-left + margin-right: auto.
+  Syntaxe moderne, plus lisible.
+
+  padding-inline → équivalent de padding-left + padding-right.
+  Évite que le contenu colle au bord sur mobile.
+
+  On ne met pas de padding-block ici.
+  Le padding vertical appartient à .section, pas au container.
+  Chaque classe a une seule responsabilité.
+*/
+
+@media (min-width: 48rem) {
+  .container {
+    padding-inline: var(--space-8); /* 32px sur tablette+ */
+  }
+}

@@ -1,0 +1,79 @@
+/* ============================================================
+   TOKENS — Valeurs universelles du kit
+   Fichier : assets/css/base/tokens.css
+
+   Ce fichier ne change JAMAIS d'un projet à l'autre.
+   Il définit les espacements, arrondis, ombres, transitions
+   et z-index — des valeurs purement structurelles.
+
+   Pour les couleurs et la typographie → theme.css
+   ============================================================ */
+
+:root {
+
+  /* === ESPACEMENTS ===
+     Échelle ×4 basée sur 4px — standard industrie (grille 8pt Figma).
+     Chaque valeur est un multiple de 4px → harmonie visuelle automatique.
+  */
+  --space-1:  0.25rem;  /*  4px */
+  --space-2:  0.5rem;   /*  8px */
+  --space-3:  0.75rem;  /* 12px */
+  --space-4:  1rem;     /* 16px */
+  --space-6:  1.5rem;   /* 24px */
+  --space-8:  2rem;     /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+
+  /* Alias sémantiques — pour une lecture rapide du code */
+  --space-xs: var(--space-2);  /*  8px */
+  --space-sm: var(--space-3);  /* 12px */
+  --space-md: var(--space-6);  /* 24px */
+  --space-lg: var(--space-12); /* 48px */
+
+
+  /* === ARRONDIS === */
+  --radius-sm:   0.25rem;  /*  4px */
+  --radius-md:   0.5rem;   /*  8px */
+  --radius-lg:   0.75rem;  /* 12px */
+  --radius-xl:   1rem;     /* 16px */
+  --radius-full: 9999px;   /* cercle / pilule */
+
+
+  /* === OMBRES === */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.10);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
+
+  /*
+    Ces valeurs sont pour les fonds clairs.
+    Sur un projet fond sombre (ex : KonoBlog), surcharger dans theme.css :
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  */
+
+
+  /* === TRANSITIONS === */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+
+
+  /* === Z-INDEX ===
+     Échelle explicite — plus besoin de deviner pourquoi z-index: 999.
+  */
+  --z-base:     0;
+  --z-raised:   10;
+  --z-dropdown: 100;
+  --z-sticky:   200;
+  --z-overlay:  300;
+  --z-modal:    400;
+  --z-toast:    500;
+
+  /* === HAUTEUR NAVBAR === */
+  --navbar-height: 4.5rem;
+  /*
+    Utilisée pour padding-top sur <main> quand la navbar est fixed.
+    Si la navbar change de hauteur → changer ici, ça se propage partout.
+  */
+}

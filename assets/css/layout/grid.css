@@ -1,0 +1,196 @@
+/* ============================================================
+   GRID — Layouts réutilisables
+   Fichier : assets/css/layout/grid.css
+
+   Ce fichier répond à UNE seule question :
+   "Comment les blocs sont disposés les uns par rapport aux autres ?"
+
+   Il ne connaît pas les couleurs, les typos, ni les composants.
+   Il pose uniquement la structure spatiale.
+   ============================================================ */
+
+
+/* ----------------------------------------------------------
+   TWO-COL — Layout 2 colonnes asymétriques (55% / 40%)
+
+   Usage HTML :
+   <div class="two-col">
+     <div class="two-col__left">  ← contenu principal (texte, titre)
+     <div class="two-col__right"> ← contenu secondaire (image, visuel)
+   </div>
+
+   Utilisé dans : Hero, À propos, Contact, Features
+   Variant --reverse : image à gauche, texte à droite.
+---------------------------------------------------------- */
+.two-col {
+  display: flex;
+  flex-direction: column;  /* empilé sur mobile */
+  gap: var(--space-10);    /* 40px entre les deux blocs */
+}
+
+.two-col__left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);     /* 24px entre les éléments du bloc gauche */
+}
+
+.two-col__right {
+  flex-shrink: 0;
+  /*
+    flex-shrink: 0 → sur mobile, le bloc droit ne rétrécit pas
+    de manière imprévue. Il prend sa taille naturelle.
+  */
+}
+
+@media (min-width: 48rem) {
+  .two-col {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .two-col__left  { flex: 1 1 55%; }
+  .two-col__right { flex: 1 1 40%; }
+
+  /*
+    1 1 55% → cet élément peut grandir, peut rétrécir,
+    et sa taille de base est 55% de l'espace disponible.
+    55% + 40% = 95% → 5% absorbé par le gap.
+  */
+
+  .two-col--reverse {
+    flex-direction: row-reverse;
+    /*
+      Pourquoi ne pas inverser dans le HTML directement ?
+      → L'ordre HTML impacte les lecteurs d'écran et la
+      navigation au clavier. On inverse VISUELLEMENT via CSS,
+      l'ordre logique du contenu reste intact.
+    */
+  }
+}
+
+
+/* ----------------------------------------------------------
+   THREE-COL — Grille 3 colonnes
+   1 colonne (mobile) → 2 colonnes (tablette) → 3 colonnes (desktop)
+
+   Usage HTML :
+   <ul class="three-col" role="list">
+     <li>...</li>
+   </ul>
+
+   Utilisé dans : Services, Avantages, Équipe
+---------------------------------------------------------- */
+.three-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 48rem) {
+  .three-col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /*
+    Si nombre impair d'items → le dernier est seul sur sa ligne.
+    On le centre et lui donne 50% de largeur pour éviter
+    qu'il occupe toute la ligne (visuellement déséquilibré).
+  */
+  .three-col > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: calc(50% - var(--space-3));
+    margin-inline: auto;
+  }
+}
+
+@media (min-width: 64rem) {
+  .three-col {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Annuler la règle tablette — plus nécessaire à 3 colonnes */
+  .three-col > :last-child:nth-child(odd) {
+    grid-column: auto;
+    width: auto;
+    margin-inline: 0;
+  }
+}
+
+
+/* ----------------------------------------------------------
+   TWO-COL-GRID — Grille 2 colonnes égales
+
+   Différence avec .two-col :
+   → .two-col      : layout asymétrique (55%/40%), texte + image
+   → .two-col-grid : 2 colonnes ÉGALES pour des cards identiques
+
+   Usage HTML :
+   <ul class="two-col-grid" role="list">
+     <li>...</li>
+   </ul>
+
+   Utilisé dans : projets, témoignages, partenaires
+---------------------------------------------------------- */
+.two-col-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 48rem) {
+  .two-col-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* ----------------------------------------------------------
+   FOUR-COL — Grille 4 colonnes
+   1 → 2 → 4
+
+   Utilisé dans : statistiques, logos partenaires, mini-features
+---------------------------------------------------------- */
+.four-col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+@media (min-width: 64rem) {
+  .four-col {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+
+/* ----------------------------------------------------------
+   BLOG-LAYOUT — Contenu principal + sidebar (2/3 - 1/3)
+
+   Usage HTML :
+   <div class="blog-layout">
+     <main class="blog-layout__main">...</main>
+     <aside class="blog-layout__sidebar">...</aside>
+   </div>
+---------------------------------------------------------- */
+.blog-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-10);
+}
+
+@media (min-width: 64rem) {
+  .blog-layout {
+    grid-template-columns: 1fr 320px;
+    /*
+      1fr pour le contenu principal → prend tout l'espace restant.
+      320px fixe pour la sidebar → largeur constante quelle que soit
+      la taille de l'écran. La sidebar a des widgets fixes,
+      pas de contenu fluide.
+    */
+    align-items: start;
+    /*
+      start → la sidebar ne s'étire pas à la hauteur du contenu.
+      Elle garde sa hauteur naturelle et colle en haut.
+    */
+  }
+}

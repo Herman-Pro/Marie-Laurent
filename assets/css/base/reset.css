@@ -1,0 +1,111 @@
+/* ============================================================
+   RESET — Normalisation de base
+   Fichier : assets/css/base/reset.css
+
+   Objectif : supprimer les styles par défaut incohérents
+   entre navigateurs pour partir d'une base propre et
+   prévisible sur tous les projets.
+   ============================================================ */
+
+
+/* ----------------------------------------------------------
+   BOX MODEL UNIVERSEL
+
+   Sans ça : padding et border s'ajoutent à la largeur déclarée.
+   Avec ça : width: 200px = 200px, point. Padding inclus.
+   On applique à ::before et ::after aussi pour la cohérence.
+---------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* ----------------------------------------------------------
+   DOCUMENT
+---------------------------------------------------------- */
+html {
+  font-size: 100%;
+  /*
+    100% = 16px — la valeur par défaut du navigateur.
+    On ne met pas 62.5% (= 10px) — ça casse l'accessibilité
+    pour les utilisateurs qui ont agrandi la police du navigateur.
+  */
+  scroll-behavior: smooth;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  /*
+    antialiased → rendu de police plus fin sur macOS/iOS.
+    Améliore la lisibilité sur fond clair.
+  */
+}
+
+
+/* ----------------------------------------------------------
+   MÉDIAS
+   display: block → supprime l'espace résiduel sous les images
+   (les images sont inline par défaut — il reste 4px sous elles).
+   max-width: 100% → les images ne débordent jamais de leur conteneur.
+---------------------------------------------------------- */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+
+/* ----------------------------------------------------------
+   FORMULAIRES
+   font: inherit → les inputs n'héritent pas de la typo du body
+   par défaut. Cette règle corrige ça.
+---------------------------------------------------------- */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+
+/* ----------------------------------------------------------
+   LIENS
+   color: inherit → les liens prennent la couleur de leur parent.
+   text-decoration: none → pas de soulignement par défaut.
+   On gère le style des liens dans chaque composant.
+---------------------------------------------------------- */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* ----------------------------------------------------------
+   LISTES
+   Les composants qui utilisent des listes déclarent leur
+   propre style. list-style: none ici évite de tout réécrire.
+---------------------------------------------------------- */
+ul,
+ol {
+  list-style: none;
+}
+
+
+/* ----------------------------------------------------------
+   BOUTONS
+   cursor: pointer → tous les boutons montrent la main.
+   background + border : none → repart d'une base neutre.
+---------------------------------------------------------- */
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}

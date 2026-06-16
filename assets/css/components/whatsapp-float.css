@@ -1,0 +1,74 @@
+/* ============================================================
+   WHATSAPP FLOATING BUTTON
+   ============================================================ */
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: #25d366;
+  color: #ffffff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 3rem;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: transform 250ms ease, box-shadow 250ms ease;
+  animation: float-in 0.5s ease 1s both;
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+}
+
+.whatsapp-float__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+}
+
+.whatsapp-float__icon svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  fill: #ffffff;
+}
+
+.whatsapp-float__label {
+  white-space: nowrap;
+}
+
+/* Cacher le label sur mobile pour garder juste l'icône */
+@media (max-width: 47.99rem) {
+  .whatsapp-float__label {
+    display: none;
+  }
+
+  .whatsapp-float {
+    padding: 0.875rem;
+    border-radius: 50%;
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+}
+
+/* Animation d'entrée */
+@keyframes float-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
